@@ -1,0 +1,426 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #FF4384;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+}
+
+i {
+    cursor: pointer;
+}
+
+.panel-left {
+    background-color: #FFEDF7;
+    -webkit-flex: 7;
+    flex: 7;
+}
+
+.panel-left-content {
+    display: flex;
+    flex-direction: column;
+    width: 445px;
+    margin: 48px 300px 48px 85px;
+}
+
+.add-wrap {
+    height: 56px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-new-text {
+    height: 100%;
+    padding: 19px 16px;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    border: none;
+    flex: 1;
+}
+
+.add-new-text::placeholder {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #FF4384;
+}
+
+.add-wrap i {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+}
+
+.current-mission-wrap {
+    padding-top: 145px;
+}
+
+.current-mission-finish-btn{
+    border-radius: 50%;
+    border:2px solid #003164;
+    float: left;
+}
+
+.current-mission-finish-btn {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+}
+
+.current-missiom-title {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: left;
+    color: #003164;
+}
+
+.current-mission-done-count {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #003164;
+    display: inline-block;
+}
+
+.current-mission-done-count.progress{
+    background-color: #FF4384;
+}
+
+.current-mission-time-text {
+    font-size: 176px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 176px;
+}
+
+.to-do-list-wrap {
+    padding-top: 107px;
+}
+
+.to-do-list-item, .done-list-item {
+    color: #003164;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #003164;
+    padding: 8px 0;
+}
+
+.to-do-item-text, .done-item-text {
+    color: #003164;
+    text-align: left;
+    flex: 1;
+    margin: 0 4px;
+}
+
+.to-do-list-item i{
+    color: #003164;
+}
+
+.more-button {
+    padding: 8px 0;
+    align-self: flex-end;
+}
+
+.panel-right {
+    background-color: #003164;
+    -webkit-flex: 3;
+    flex: 3;
+}
+
+.panel-right nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 85px;
+}
+
+.panel-right nav div {
+    display: flex;
+    margin-top: 48px;
+    cursor: pointer;
+}
+
+.panel-right nav i {
+    color: white;
+    font-size: 36px;
+    width: 36px;
+    height: 36;
+}
+
+.panel-right nav span {
+    font-size: 36px;
+    line-height: 36px;
+    padding-left: 8px;
+}
+
+.panel-right nav .active *{
+    color: #FF4384;
+}
+
+.panel-right nav .deactive *{
+    color: #FFFFFF33;
+}
+
+.panel-right-content {
+    width: 445px;
+    position: absolute;
+    left: 560px;
+    top: 48px;
+}
+
+.panel-page-content {
+    width: 100%;
+}
+
+.folder {
+    display: flex;
+    flex-direction: column;
+}
+
+.folder .folder-btn {
+    margin-top: 48px;
+    background-color: #FFFFFF33;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.folder-btn * {
+    font-size: 24px;
+    line-height: 36px;
+    color: white;
+    margin: auto 16px;
+}
+
+.folder-btn.first {
+    margin-top: 0px;
+}
+
+.folder .to-do-list-item, .folder .done-list-item {
+    border-bottom-color: #FFFFFF33;
+}
+
+.folder i {
+    width: 24px;
+    height: 24px;
+}
+
+.folder .to-do-list-wrap, .folder .done-list-wrap {
+    padding-top: 16px;
+}
+
+.panel-right-content .to-do-list-wrap *, .panel-right-content .done-list-wrap * {
+    color: white;
+}
+
+.done-item-text {
+    text-decoration: line-through;
+}
+
+.done-times-wrap {
+    display: flex;
+}
+
+.done-times-count {
+    border-radius: 50%;
+    background-color: white;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+}
+
+.focus-content {
+    margin-top: 24px;
+    display: flex;
+}
+
+.focus-block {
+    flex: 1;
+}
+
+.focus-title {
+    color: white;
+    font-size: 16px;
+    line-height: 36px;
+}
+
+.focus-times {
+    font-size: 64px;
+    line-height: 64px;
+}
+
+.focus-times span {
+    font-size: 16px;
+    line-height: 16px;
+    color: #FFFFFF33;
+    margin-left: 8px;
+}
+
+
+.chart-date-interval {
+    display: flex;
+}
+
+.chart-date-interval i{
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    margin: 0;
+}
+
+.chart-date-interval-text {
+    font-size: 16px;
+    line-height: 24px;
+    margin: auto 8px;
+}
+
+.chart-canvas {
+    margin-top: 16px;
+}
+
+.ringtones-content {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ringtones-radio {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.ringtones-radio * {
+    color: white;
+}
+
+.ringtones-radio.checked *{
+    color: #FF4384;
+}
+
+.ringtones-radio i {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+}
+
+.ringtones-radio span {
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 4px;
+}
+
+.close {
+    position: absolute;
+    right: 85px;
+    top: 48px;
+}
+
+.close i {
+    color: white;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.logo {
+    writing-mode: vertical-lr;
+    color: white;
+    font-size: 24px;
+    line-height: 32px;
+    position: absolute;
+    bottom: 48px;
+    right: 85px;
+}
+
+.progress-circle {
+    width: 540px;
+    height: 540px;
+    border-radius: 50%;
+    border: 4px solid #FF4384;
+    position: absolute;
+    top: calc(50% - 270px);
+    left: calc(70% - 270px);
+}
+
+.progress-circle-svg {
+    margin: -4px;
+}
+
+.progress-circle-inner {
+    width: 508px;
+    height: 508px;
+    border-radius: 50%;
+    border: 4px solid #FF4384;
+    background-color: #FF4384;
+    margin: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* #progress-bar {
+    
+} */
+
+.progress-circle-inner.is_countdown {
+    background-color: white;
+}
+
+.progress-circle-inner i {
+    color: white;
+}
+
+.progress-circle-inner i.is_countdown {
+    color: #FF4384;
+}
+
+.progress-circle-inner .play {
+    width: 96px;
+    height: 96px;
+    font-size: 96px;
+    position: absolute;
+    top: calc(50% - 48px);
+    left: calc(50% - 48px);
+}
+
+.progress-circle-inner .stop {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    float: left;
+    position: absolute;
+    top: calc(50% + 24px);
+    left: calc(50% + 48px);
+}
+

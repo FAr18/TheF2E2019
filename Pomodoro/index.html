@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+        <div class="panel-left">
+            <div class="panel-left-content">
+                <div class="add-wrap">
+                    <input class="add-new-text" type="text" placeholder="add a new mission...">
+                    <i class="material-icons">add</i>
+                </div>
+                <div class="current-mission-wrap">
+                    <div class="current-mission-finish-btn"></div>
+                    <div class="current-missiom-title">The First Thing to do today</div>
+                    <div class="current-mission-done-wrap">
+                        <div class="current-mission-done-count"></div>
+                        <div class="current-mission-done-count progress"></div>
+                    </div>
+                </div>
+                <div class="current-mission-time-text">25:00</div>
+                <ul class="to-do-list-wrap">
+                    <li class="to-do-list-item">
+                        <i class="material-icons">radio_button_unchecked</i>
+                        <div class="to-do-item-text">The second thing to do today</div>
+                        <i class="material-icons">play_circle_outline</i>
+                    </li>
+                    <li class="to-do-list-item">
+                        <i class="material-icons">radio_button_unchecked</i>
+                        <div class="to-do-item-text">The third thing to do today</div>
+                        <i class="material-icons">play_circle_outline</i>
+                    </li>
+                    <li class="to-do-list-item">
+                        <i class="material-icons">radio_button_unchecked</i>
+                        <div class="to-do-item-text">The forth thing to do today</div>
+                        <i class="material-icons">play_circle_outline</i>
+                    </li>
+                </ul>
+                <div class="more-button">MORE</div>
+            </div>
+        </div>
+        <div class="panel-right">
+            <nav>
+                <div class="nav-btn" id="nav-btn-todo"><i class="material-icons">list</i><span>To-do List</span></div>
+                <div class="nav-btn" id="nav-btn-analytics"><i class="material-icons">insert_chart</i><span>Analytics</span></div>
+                <div class="nav-btn" id="nav-btn-ringtones"><i class="material-icons">library_music</i><span>RingTones</span></div>
+            </nav>
+            <div class="panel-right-content">
+                <div class="panel-page-content" id="panel-page-todo">
+                    <div class="add-wrap">
+                        <input class="add-new-text" type="text" placeholder="add a new mission...">
+                        <i class="material-icons">add</i>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-btn">
+                            <span class="folder-title">To-do</span>
+                            <i class="material-icons">arrow_drop_up</i>
+                        </div>
+                        <ul class="to-do-list-wrap">
+                            <li class="to-do-list-item">
+                                <i class="material-icons">radio_button_unchecked</i>
+                                <div class="to-do-item-text">The second thing to do today</div>
+                                <i class="material-icons">play_circle_outline</i>
+                            </li>
+                            <li class="to-do-list-item">
+                                <i class="material-icons">radio_button_unchecked</i>
+                                <div class="to-do-item-text">The second thing to do today</div>
+                                <i class="material-icons">play_circle_outline</i>
+                            </li>
+                            <li class="to-do-list-item">
+                                <i class="material-icons">radio_button_unchecked</i>
+                                <div class="to-do-item-text">The second thing to do today</div>
+                                <i class="material-icons">play_circle_outline</i>
+                            </li>
+                            <li class="to-do-list-item">
+                                <i class="material-icons">radio_button_unchecked</i>
+                                <div class="to-do-item-text">The second thing to do today</div>
+                                <i class="material-icons">play_circle_outline</i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-btn">
+                            <span class="folder-title">Done</span>
+                            <i class="material-icons">arrow_drop_up</i>
+                        </div>
+                        <ul class="done-list-wrap">
+                            <li class="done-list-item">
+                                <i class="material-icons">check_circle_outline</i>
+                                <div class="done-item-text">learning something</div>
+                                <div class="done-times-wrap">
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                </div>
+                            </li>
+                            <li class="done-list-item">
+                                <i class="material-icons">check_circle_outline</i>
+                                <div class="done-item-text">learning something2</div>
+                                <div class="done-times-wrap">
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                    <div class="done-times-count"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-page-content" id="panel-page-analytics">
+                    <div class="folder">
+                        <div class="folder-btn first">
+                            <span class="folder-title">Focus time</span>
+                        </div>
+                        <div class="focus-content">
+                            <div class="focus-block">
+                                <div class="focus-title">Today</div>
+                                <div class="focus-times">20<span class="unit">/tomato</span>
+                                </div>
+                            </div>
+                            <div class="focus-block">
+                                <div class="focus-title">Week</div>
+                                <div class="focus-times">999<span class="unit">/tomato</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-btn">
+                            <span class="folder-title">Chart</span>
+                            <div class="chart-date-interval">
+                                <i class="material-icons">keyboard_arrow_left</i>
+                                <span class="chart-date-interval-text">2019.12.31 - 2019.12.31</span>
+                                <i class="material-icons">keyboard_arrow_right</i>
+                            </div>
+                        </div>
+                        <canvas class="chart-canvas" id="chart" height="274"></canvas>
+                    </div>
+                </div>
+                <div class="panel-page-content" id="panel-page-ringtones">
+                    <div class="folder">
+                        <div class="folder-btn first">
+                            <span class="folder-title">Work</span>
+                        </div>
+                        <div class="ringtones-content">
+                            <div class="ringtones-radio checked"><i class="material-icons">radio_button_checked</i><span>none</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>default</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>alarm</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>alert</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>beep</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bell</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bird</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bugle</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>digital</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>drop</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>horn</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>music</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>ring</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>warning</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>whistle</span></div>
+                        </div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-btn">
+                            <span class="folder-title">Break</span>
+                        </div>
+                        <div class="ringtones-content">
+                            <div class="ringtones-radio checked"><i class="material-icons">radio_button_checked</i><span>none</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>default</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>alarm</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>alert</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>beep</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bell</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bird</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>bugle</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>digital</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>drop</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>horn</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>music</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>ring</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>warning</span></div>
+                            <div class="ringtones-radio"><i class="material-icons">radio_button_unchecked</i><span>whistle</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="close" id="panel-btn-close"><i class="material-icons">clear</i></div>
+            <div class="logo">Pomodoro</div>
+        </div>
+        <div class="progress-circle">
+            <svg class="progress-circle-svg" height="540" width="540" viewBox="0 0 20 20">
+                <circle id="progress-bar" r="9.5" cx="10" cy="10" fill="#ffffff00"
+                    stroke="#ff4384" stroke-width="0.8" 
+                    stroke-dasharray="0 100"
+                    transform="rotate(-90) translate(-20)"/>
+            </svg>
+            <div class="progress-circle-inner">
+                <i class="material-icons play">play_circle_filled</i>
+                <i class="material-icons stop">stop</i>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
