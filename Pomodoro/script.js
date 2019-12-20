@@ -3,7 +3,6 @@ const work_sec = 25 * 60;
 const rest_sec = 5 * 60;
 
 let myChart;
-let timer;
 
 let progress_bar;
 
@@ -178,6 +177,15 @@ function settingListener() {
     $('#panel-btn-close').click(() => {closeSidePanel();});
 }
 
+function updateTimeLeft() {
+    $('#time-left-text').text(formatTimeLeft(time_left));
+}
+
+function updateProgress() {
+    let maxTimeLeft = isWorking() ? work_sec : rest_sec;
+    let percentage = time_left / maxTimeLeft * 100;
+    setProgressBar(percentage);
+}
 
 let currentTodoList = [];
 let currentDate = new Date();
@@ -212,6 +220,12 @@ function saveTodoList(date, todoList) {
 
 function formatDate(date) {
     return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+}
+
+function formatTimeLeft(timeLeftSec) {
+    let min = parseInt(timeLeftSec / 60);
+    let sec = timeLeftSec % 60;
+    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
 }
 
 function initTodoList() {
@@ -261,6 +275,11 @@ function startRestTime() {
     time_left = rest_sec;
     currentTimerState = restingState;
     //todo: setup timer
+}
+
+function pauseTimer() {
+    //todo: pause timer
+
 }
 
 function isWorking() {
