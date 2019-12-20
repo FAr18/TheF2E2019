@@ -1,4 +1,7 @@
 
+const work_sec = 25 * 60;
+const rest_sec = 5 * 60;
+
 let myChart;
 let timer;
 
@@ -175,7 +178,107 @@ function settingListener() {
     $('#panel-btn-close').click(() => {closeSidePanel();});
 }
 
-//initialize
-settingChart();
-closeSidePanel();
-settingListener();
+
+let currentTodoList = [];
+let currentDate = new Date();
+let currentTodoIndex = -1;
+
+let timer;
+let time_left;
+let currentTimerState;
+
+const workingState = 'working';
+const restingState = 'resting';
+
+function initializeData() {
+    currentTodoList = loadTodayTodoList() || [];
+
+}
+
+function loadSpecificDateTodoList(date) {
+    return JSON.parse(localStorage.getItem(date));
+}
+
+function loadTodayTodoList() {
+    let date = new Date();
+    return loadSpecificDateTodoList(formatDate(date));
+}
+
+function saveTodoList(date, todoList) {
+    if (!date || !todoList) return;
+    let dateStr = formatDate(date);
+    localStorage.setItem(dateStr, JSON.stringify(todoList));
+}
+
+function formatDate(date) {
+    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+}
+
+function initTodoList() {
+    currentTodoList = [];
+    currentTodoIndex = -1;
+}
+
+function addTodo(todo) {
+    currentTodoList.push({
+        title: todo,
+        done_times: 0,
+        is_done: false
+    });
+    updateTodoList();
+}
+
+function addTodoDoneTimes() {
+    if (currentTodoIndex) {
+        currentTodoList[currentTodoList].done_times++;
+        updateTodoList();
+    }
+}
+
+function setTodoDone(todoIndex) {
+    if (currentTodoList[todoIndex]) {
+        currentTodoList[todoIndex].is_done = true;
+        updateTodoList();
+    }
+}
+
+function updateTodoList() {
+    saveTodayTodoList(currentDate, currentTodoList);
+    if (currentDate !== formatDate(new Date())) {
+        initTodoList();
+        currentDate = new Date();
+    }
+    //todo: update view
+}
+
+function startWorkTime() {
+    time_left = work_sec;
+    currentTimerState = workingState;
+    //todo: setup timer
+}
+
+function startRestTime() {
+    time_left = rest_sec;
+    currentTimerState = restingState;
+    //todo: setup timer
+}
+
+function isWorking() {
+    return timer && currentTimerState === workingState;
+}
+
+function isResting() {
+    return timer && currentTimerState === restingState;
+}
+
+function isWaiting() {
+    return !isWorking() && !isResting();
+}
+
+$(document).ready(function() {
+    //initialize
+    settingChart();
+    closeSidePanel();
+    settingListener();
+    initializeData();
+});

@@ -389,11 +389,11 @@ i {
     left: 0;
 }
 
-/* #progress-bar {
-    
-} */
+#progress-bar {
+    transition: all .5s linear;
+}
 
-.progress-circle-inner.is_countdown {
+.progress-circle-inner.is-countdown {
     background-color: white;
 }
 
@@ -401,7 +401,7 @@ i {
     color: white;
 }
 
-.progress-circle-inner i.is_countdown {
+.progress-circle-inner i.is-countdown {
     color: #FF4384;
 }
 
