@@ -1,6 +1,6 @@
 
-const work_sec = 25 * 60;
-const rest_sec = 5 * 60;
+const SEC_WORK = 25 * 60;
+const SEC_REST = 5 * 60;
 
 let myChart;
 
@@ -170,21 +170,40 @@ function setProgressBar(value) {
     $('#progress-bar').attr('stroke-dasharray', `calc(${value} * 0.597) 59.7`);
 }
 
+function changeTimerStatus() {
+    if (isWaiting()) continueTimer();
+    else {
+        if (currentTimerState) {
+            pauseTimer();
+        } else {
+            startWorkTime();
+        } 
+    }
+}
+
 function settingListener() {
     $('#nav-btn-todo').click(() => {openPanelTodo();});
     $('#nav-btn-analytics').click(() => {openPanelAnalytics();});
     $('#nav-btn-ringtones').click(() => {openPanelRingtones();});
     $('#panel-btn-close').click(() => {closeSidePanel();});
+
+    $('#timer-btn-main').click(() => {changeTimerStatus();});
 }
 
 function updateTimeLeft() {
-    $('#time-left-text').text(formatTimeLeft(time_left));
+    let maxTimeLeft = isWorking() ? SEC_WORK : SEC_REST;
+    $('#time-left-text').text(formatTimeLeft(maxTimeLeft - time_left));
 }
 
 function updateProgress() {
-    let maxTimeLeft = isWorking() ? work_sec : rest_sec;
-    let percentage = time_left / maxTimeLeft * 100;
+    let maxTimeLeft = isWorking() ? SEC_WORK : SEC_REST;
+    let percentage = (maxTimeLeft - time_left) / maxTimeLeft * 100;
     setProgressBar(percentage);
+}
+
+function updateTimerView() {
+    updateTimeLeft();
+    updateProgress();
 }
 
 let currentTodoList = [];
@@ -195,8 +214,8 @@ let timer;
 let time_left;
 let currentTimerState;
 
-const workingState = 'working';
-const restingState = 'resting';
+const STATE_WORKING = 'working';
+const STATE_RESTING = 'resting';
 
 function initializeData() {
     currentTodoList = loadTodayTodoList() || [];
@@ -225,7 +244,7 @@ function formatDate(date) {
 function formatTimeLeft(timeLeftSec) {
     let min = parseInt(timeLeftSec / 60);
     let sec = timeLeftSec % 60;
-    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
 }
 
 function initTodoList() {
@@ -266,32 +285,55 @@ function updateTodoList() {
 }
 
 function startWorkTime() {
-    time_left = work_sec;
-    currentTimerState = workingState;
+    time_left = SEC_WORK;
+    currentTimerState = STATE_WORKING;
     //todo: setup timer
+    setupTimer();
 }
 
 function startRestTime() {
-    time_left = rest_sec;
-    currentTimerState = restingState;
+    time_left = SEC_REST;
+    currentTimerState = STATE_RESTING;
     //todo: setup timer
+
+    if (!timer) setupTimer();
+}
+
+function setupTimer() {
+    timer = setInterval(timeDown, 1000);
 }
 
 function pauseTimer() {
     //todo: pause timer
+    clearInterval(timer);
+    timer = null;
+}
 
+function continueTimer() {
+    //todo: continue timer
+    setupTimer();
 }
 
 function isWorking() {
-    return timer && currentTimerState === workingState;
+    return timer && currentTimerState === STATE_WORKING;
 }
 
 function isResting() {
-    return timer && currentTimerState === restingState;
+    return timer && currentTimerState === STATE_RESTING;
 }
 
 function isWaiting() {
-    return !isWorking() && !isResting();
+    return !isWorking() && !isResting() && currentTimerState;
+}
+
+function timeDown() {
+    time_left--;
+    updateTimerView();
+
+    if (time_left <= 0) {
+        //todo: change state
+        startRestTime();
+    }
 }
 
 $(document).ready(function() {
