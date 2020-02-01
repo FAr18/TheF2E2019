@@ -170,7 +170,7 @@ function setProgressBar(value) {
     $('#progress-bar').attr('stroke-dasharray', `calc(${value} * 0.597) 59.7`);
 }
 
-function changeTimerStatus() {
+function changeTimerCountdownState() {
     if (isWaiting()) continueTimer();
     else {
         if (currentTimerState) {
@@ -187,7 +187,7 @@ function settingListener() {
     $('#nav-btn-ringtones').click(() => {openPanelRingtones();});
     $('#panel-btn-close').click(() => {closeSidePanel();});
 
-    $('#timer-btn-main').click(() => {changeTimerStatus();});
+    $('#timer-btn-main').click(() => {changeTimerCountdownState();});
 }
 
 function updateTimeLeft() {
@@ -296,11 +296,20 @@ function startRestTime() {
     currentTimerState = STATE_RESTING;
     //todo: setup timer
 
-    if (!timer) setupTimer();
+     setupTimer();
+}
+
+function changeTimerWorkState() {
+    if (currentTimerState === STATE_WORKING) {
+        startRestTime();
+    } else if (currentTimerState === STATE_RESTING) {
+        //todo: add done times
+        startWorkTime();
+    }
 }
 
 function setupTimer() {
-    timer = setInterval(timeDown, 1000);
+    if (!timer) timer = setInterval(timeDown, 1000);
 }
 
 function pauseTimer() {
@@ -333,8 +342,11 @@ function timeDown() {
     if (time_left <= 0) {
         //todo: change state
         startRestTime();
+        changeTimerWorkState();
     }
 }
+
+
 
 $(document).ready(function() {
     //initialize
